@@ -182,8 +182,8 @@ export function CurveEditor({
 
         <circle
           data-handle="0"
-          data-dragging={activeHandle === 0 ? 'true' : 'false'}
-          data-just-dropped={justDropped === 0 ? 'true' : 'false'}
+          data-dragging={activeHandle === 0 ? 'true' : undefined}
+          data-just-dropped={justDropped === 0 ? 'true' : undefined}
           className="curve-handle"
           cx={h1x}
           cy={h1y}
@@ -196,8 +196,8 @@ export function CurveEditor({
         />
         <circle
           data-handle="1"
-          data-dragging={activeHandle === 1 ? 'true' : 'false'}
-          data-just-dropped={justDropped === 1 ? 'true' : 'false'}
+          data-dragging={activeHandle === 1 ? 'true' : undefined}
+          data-just-dropped={justDropped === 1 ? 'true' : undefined}
           className="curve-handle"
           cx={h2x}
           cy={h2y}
