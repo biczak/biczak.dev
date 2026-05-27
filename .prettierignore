@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+.astro/
+.wrangler/
+
+# Lockfiles
+pnpm-lock.yaml
+
+# Generated / vendored content
+docs/
+
+# Harness-managed
+.claude/
+.superpowers/

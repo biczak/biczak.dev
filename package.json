@@ -7,7 +7,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "typecheck": "astro check && tsc --noEmit"
+    "typecheck": "astro check && tsc --noEmit",
+    "lint": "eslint --ext .ts,.tsx,.astro --no-error-on-unmatched-pattern src tests",
+    "format": "prettier --write \"**/*.{ts,tsx,astro,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\"",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +37,19 @@
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
-    "typescript": "^5.9.3"
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@vitest/coverage-v8": "^4.1.7",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "happy-dom": "^20.9.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.7"
   }
 }
