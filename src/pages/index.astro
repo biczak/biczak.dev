@@ -1,15 +1,12 @@
 ---
-import '@/design-system/styles/global.css';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GradientText from '@/components/GradientText.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>biczak.dev</title>
-  </head>
-  <body class="bg-ink text-paper">
+<BaseLayout>
+  <main class="p-12">
     <h1 class="font-display text-6xl">
-      Type that <em class="gradient-text">moves</em>.
+      Hi, I build the <GradientText>interesting</GradientText> bits.
     </h1>
-  </body>
-</html>
+  </main>
+</BaseLayout>

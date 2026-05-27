@@ -1,0 +1,35 @@
+---
+import '@/design-system/styles/global.css';
+import { site } from '@/content/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  themeMode?: 'light' | 'dark';
+}
+
+const { title = site.name, description = site.tagline, themeMode = 'dark' } = Astro.props;
+
+const fullTitle = title === site.name ? site.name : `${title} — ${site.name}`;
+---
+
+<!doctype html>
+<html lang="en" data-theme={themeMode}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.url.href} />
+    <title>{fullTitle}</title>
+  </head>
+  <body class="min-h-screen bg-ink text-paper antialiased">
+    <slot />
+  </body>
+</html>
