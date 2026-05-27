@@ -17,6 +17,11 @@ module.exports = {
       files: ['*.astro'],
       parser: 'astro-eslint-parser',
       parserOptions: { parser: '@typescript-eslint/parser', extraFileExtensions: ['.astro'] },
+      rules: {
+        'react/no-unknown-property': 'off',
+        'react/jsx-key': 'off',
+        'react/no-children-prop': 'off',
+      },
     },
   ],
   rules: {
