@@ -10,7 +10,7 @@ test.describe('Easing Curve Lab', () => {
 
   test('selecting a preset updates the curve in the URL', async ({ page }) => {
     await page.goto('/tools/easing');
-    await page.getByRole('button', { name: 'ease-out' }).click();
+    await page.getByRole('button', { name: 'ease-out', exact: true }).click();
     await expect(page).toHaveURL(/c=0,0,0\.58,1/);
   });
 
@@ -26,7 +26,7 @@ test.describe('Easing Curve Lab', () => {
     await page.goto('/tools/easing');
     const copyButtons = page.getByRole('button', { name: 'copy' });
     await copyButtons.first().click();
-    await expect(page.getByText('✓ copied').first()).toBeVisible({ timeout: 2000 });
+    await expect(page.getByText('✓ copied')).toBeVisible({ timeout: 2000 });
   });
 
   test('keyboard nudges the control point', async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe('Easing Curve Lab', () => {
 
   test('pasted URL hash restores state', async ({ page }) => {
     await page.goto('/tools/easing#c=0,0,1,1&d=500&t=rotate');
-    const select = page.locator('select');
+    const select = page.getByLabel(/compare with/i);
     await expect(page.getByRole('button', { name: 'rotate', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(select).toHaveValue('');
   });
