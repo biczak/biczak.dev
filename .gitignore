@@ -15,6 +15,9 @@ dist/
 # Brainstorming session artifacts (mockups, server state)
 .superpowers/
 
+# Claude Code harness-managed config
+.claude/
+
 # Editor / OS
 .vscode/
 .idea/
