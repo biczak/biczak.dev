@@ -2,15 +2,19 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import GradientText from '@/components/GradientText.astro';
+import HeroSection from '@/components/HeroSection.astro';
+import AboutSection from '@/components/AboutSection.astro';
+import WorkHistorySection from '@/components/WorkHistorySection.astro';
+import ContactSection from '@/components/ContactSection.astro';
 ---
 
 <BaseLayout>
   <Header />
-  <main class="mx-auto max-w-6xl px-6 py-24">
-    <h1 class="font-display text-6xl md:text-8xl leading-[1] tracking-[-0.04em]">
-      Hi, I build the <GradientText>interesting</GradientText> bits.
-    </h1>
+  <main>
+    <HeroSection />
+    <AboutSection />
+    <WorkHistorySection />
+    <ContactSection />
   </main>
   <Footer />
 </BaseLayout>

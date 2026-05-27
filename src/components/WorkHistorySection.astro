@@ -1,0 +1,27 @@
+---
+import { site } from '@/content/site';
+---
+
+<section id="work" class="mx-auto max-w-6xl px-6 py-24 border-t border-paper/5">
+  <p class="font-mono text-xs uppercase tracking-[0.2em] opacity-60 mb-6">Work</p>
+  <h2 class="font-display text-3xl md:text-4xl leading-[1.05] tracking-[-0.02em] mb-12">
+    Where I&apos;ve shipped.
+  </h2>
+  <ol class="space-y-10">
+    {
+      site.workHistory.map((entry) => (
+        <li class="grid md:grid-cols-12 gap-4 md:gap-8 items-baseline border-t border-paper/5 pt-6">
+          <p class="md:col-span-3 font-mono text-xs opacity-60">{entry.dates}</p>
+          <div class="md:col-span-9">
+            <h3 class="font-display text-xl md:text-2xl">
+              <span class="font-medium">{entry.role}</span>
+              <span class="opacity-50"> · </span>
+              <span>{entry.company}</span>
+            </h3>
+            <p class="mt-2 opacity-75 max-w-2xl">{entry.detail}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
