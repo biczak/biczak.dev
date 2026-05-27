@@ -1,12 +1,16 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import GradientText from '@/components/GradientText.astro';
 ---
 
 <BaseLayout>
-  <main class="p-12">
-    <h1 class="font-display text-6xl">
+  <Header />
+  <main class="mx-auto max-w-6xl px-6 py-24">
+    <h1 class="font-display text-6xl md:text-8xl leading-[1] tracking-[-0.04em]">
       Hi, I build the <GradientText>interesting</GradientText> bits.
     </h1>
   </main>
+  <Footer />
 </BaseLayout>
