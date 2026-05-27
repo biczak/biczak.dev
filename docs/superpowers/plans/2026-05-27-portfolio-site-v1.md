@@ -127,9 +127,11 @@ pnpm init
 
 - [ ] **Step 2: Install Astro, React, Tailwind, and their integrations**
 
+Tailwind v4 dropped the classic `@astrojs/tailwind` integration (which only supported v3). The supported v4 path for Astro is the `@tailwindcss/vite` plugin registered directly in the Vite config — no Astro-specific integration package needed.
+
 ```bash
 pnpm add astro@^5 react@^18 react-dom@^18 @types/react@^18 @types/react-dom@^18
-pnpm add @astrojs/react @astrojs/tailwind tailwindcss@^4 @tailwindcss/vite
+pnpm add @astrojs/react tailwindcss@^4 @tailwindcss/vite@^4
 pnpm add -D typescript@^5 @types/node
 ```
 
@@ -138,15 +140,13 @@ pnpm add -D typescript@^5 @types/node
 ```javascript
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://biczak.dev',
-  integrations: [
-    react(),
-    tailwind({ applyBaseStyles: false }),
-  ],
+  integrations: [react()],
   vite: {
+    plugins: [tailwindcss()],
     build: { cssMinify: 'lightningcss' },
   },
 });
@@ -482,81 +482,48 @@ git commit -m "feat(design-system): add Voltage palette, duration, and easing to
 
 ## Task 5: Global CSS, Fonts, and CSS Variables
 
+Tailwind v4 uses CSS-first config — theme tokens are declared in an `@theme` block inside the global CSS file. There is no `tailwind.config.ts` in this project. Color tokens defined in `@theme` automatically generate utilities like `bg-ink`, `text-paper`, `font-display`, etc.
+
 **Files:**
 - Create: `src/design-system/styles/global.css`
-- Create: `tailwind.config.ts`
 
-- [ ] **Step 1: Create `tailwind.config.ts`**
-
-```typescript
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}'],
-  theme: {
-    extend: {
-      colors: {
-        ink: '#07091a',
-        paper: '#e5e7ff',
-        cyan: { DEFAULT: '#22d3ee' },
-        violet: { DEFAULT: '#8b5cf6' },
-        rose: { DEFAULT: '#ec4899' },
-        graphite: '#14171f',
-      },
-      fontFamily: {
-        display: ['"Bricolage Grotesque Variable"', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-      },
-      transitionTimingFunction: {
-        entrance: 'cubic-bezier(0.2, 0.7, 0.1, 1)',
-      },
-      transitionDuration: {
-        flash: '80ms',
-        quick: '180ms',
-        base: '320ms',
-        slow: '560ms',
-      },
-    },
-  },
-};
-
-export default config;
-```
-
-- [ ] **Step 2: Create `src/design-system/styles/global.css`**
+- [ ] **Step 1: Create `src/design-system/styles/global.css`**
 
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #07091a;
+  --color-paper: #e5e7ff;
+  --color-cyan: #22d3ee;
+  --color-violet: #8b5cf6;
+  --color-rose: #ec4899;
+  --color-graphite: #14171f;
+
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --duration-flash: 80ms;
+  --duration-quick: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 560ms;
+
+  --ease-entrance: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
 
 @layer base {
   :root {
-    --ink: #07091a;
-    --paper: #e5e7ff;
-    --cyan: #22d3ee;
-    --violet: #8b5cf6;
-    --rose: #ec4899;
-    --graphite: #14171f;
-    --gradient: linear-gradient(95deg, var(--cyan) 0%, var(--violet) 55%, var(--rose) 100%);
-
-    --duration-flash: 80ms;
-    --duration-quick: 180ms;
-    --duration-base: 320ms;
-    --duration-slow: 560ms;
-
-    --ease-entrance: cubic-bezier(0.2, 0.7, 0.1, 1);
-
+    --gradient: linear-gradient(95deg, var(--color-cyan) 0%, var(--color-violet) 55%, var(--color-rose) 100%);
     color-scheme: dark light;
   }
 
   html {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
     font-feature-settings: 'cv11', 'ss01';
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -568,12 +535,12 @@ export default config;
   }
 
   ::selection {
-    background: var(--violet);
-    color: var(--paper);
+    background: var(--color-violet);
+    color: var(--color-paper);
   }
 
   *:focus-visible {
-    outline: 2px solid var(--cyan);
+    outline: 2px solid var(--color-cyan);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -603,9 +570,9 @@ export default config;
 }
 ```
 
-- [ ] **Step 3: Verify CSS loads in a test page**
+- [ ] **Step 2: Verify the styles compile**
 
-Modify `src/pages/index.astro` temporarily to import the styles:
+Modify `src/pages/index.astro` temporarily to import the styles and use a sample utility:
 ```astro
 ---
 import '@/design-system/styles/global.css';
@@ -623,10 +590,10 @@ import '@/design-system/styles/global.css';
 </html>
 ```
 
-Run: `pnpm dev`
-Expected: page shows dark ink background with paper text. "moves" renders with the cyan→violet→rose gradient and no clipping. Stop with Ctrl+C.
+Run: `pnpm build`
+Expected: build completes without errors. The built CSS in `dist/` should contain rules for `.bg-ink`, `.text-paper`, `.font-display`, and `.gradient-text`.
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 3: Commit**
 
 ```bash
 git add -A
