@@ -20,7 +20,11 @@ test.describe('Easing Curve Lab', () => {
     await expect(page).toHaveURL(/t=scale/);
   });
 
-  test('export panel copy button triggers copy and shows confirmation', async ({ page, context, browserName }) => {
+  test('export panel copy button triggers copy and shows confirmation', async ({
+    page,
+    context,
+    browserName,
+  }) => {
     test.skip(browserName === 'webkit', 'Clipboard permission API differs on webkit');
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
     await page.goto('/tools/easing');
@@ -40,7 +44,10 @@ test.describe('Easing Curve Lab', () => {
   test('pasted URL hash restores state', async ({ page }) => {
     await page.goto('/tools/easing#c=0,0,1,1&d=500&t=rotate');
     const select = page.getByLabel(/compare with/i);
-    await expect(page.getByRole('button', { name: 'rotate', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('button', { name: 'rotate', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
     await expect(select).toHaveValue('');
   });
 });
