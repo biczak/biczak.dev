@@ -66,6 +66,37 @@
     font-style: italic;
     font-weight: 500;
   }
+
+  .curve-handle {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.1, 1);
+  }
+  .curve-handle:hover,
+  .curve-handle:focus-visible {
+    transform: scale(1.18);
+  }
+  .curve-handle[data-dragging='true'] {
+    transform: scale(0.9);
+    transition-duration: 60ms;
+  }
+  .curve-handle[data-just-dropped='true'] {
+    animation: drop-settle 420ms cubic-bezier(0.2, 0.7, 0.1, 1);
+  }
+}
+
+@keyframes drop-settle {
+  0%   { transform: scale(0.9); }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curve-handle,
+  .curve-handle[data-just-dropped='true'] {
+    transition: none;
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

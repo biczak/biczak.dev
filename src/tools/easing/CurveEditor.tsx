@@ -20,6 +20,7 @@ export function CurveEditor({
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [activeHandle, setActiveHandle] = useState<0 | 1 | null>(null);
+  const [justDropped, setJustDropped] = useState<0 | 1 | null>(null);
 
   const toSvg = useCallback((nx: number, ny: number): [number, number] => {
     const x = PAD + nx * (VB - PAD * 2);
@@ -67,7 +68,14 @@ export function CurveEditor({
         activeHandle === 0 ? [nx, ny, curve[2], curve[3]] : [curve[0], curve[1], nx, ny];
       onChange(next);
     };
-    const onUp = () => setActiveHandle(null);
+    const onUp = () => {
+      const released = activeHandle;
+      setActiveHandle(null);
+      if (released !== null) {
+        setJustDropped(released);
+        window.setTimeout(() => setJustDropped((d) => (d === released ? null : d)), 420);
+      }
+    };
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
     return () => {
@@ -174,6 +182,9 @@ export function CurveEditor({
 
         <circle
           data-handle="0"
+          data-dragging={activeHandle === 0 ? 'true' : 'false'}
+          data-just-dropped={justDropped === 0 ? 'true' : 'false'}
+          className="curve-handle"
           cx={h1x}
           cy={h1y}
           r="22"
@@ -185,6 +196,9 @@ export function CurveEditor({
         />
         <circle
           data-handle="1"
+          data-dragging={activeHandle === 1 ? 'true' : 'false'}
+          data-just-dropped={justDropped === 1 ? 'true' : 'false'}
+          className="curve-handle"
           cx={h2x}
           cy={h2y}
           r="22"
