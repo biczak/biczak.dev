@@ -32,12 +32,7 @@ export function ExportPanel({ curve }: Props) {
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-50 w-12 shrink-0">
                 {format.label}
               </span>
-              <div
-                tabIndex={0}
-                role="region"
-                aria-label={`${format.label} export code`}
-                className="flex-1 font-mono text-xs px-3 py-2 rounded-md bg-ink/60 border border-paper/5 overflow-x-auto whitespace-nowrap"
-              >
+              <div className="flex-1 font-mono text-xs px-3 py-2 rounded-md bg-ink/60 border border-paper/5 overflow-x-auto whitespace-nowrap">
                 <code>{code}</code>
               </div>
               <button
