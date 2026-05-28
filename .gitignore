@@ -11,6 +11,7 @@ dist/
 coverage/
 test-results/
 playwright-report/
+.lighthouseci/
 
 # Environment
 .env
