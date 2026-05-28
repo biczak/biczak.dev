@@ -37,7 +37,7 @@ export function AnimationPlayground({
         <p className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-50">
           Playground — {TARGET_LABELS[target]}
         </p>
-        <p className="font-mono text-[10px] opacity-40">{duration}ms loop</p>
+        <p className="font-mono text-[10px] opacity-50">{duration}ms loop</p>
       </div>
       <Target target={target} progress={progress} ghostProgress={ghostProgress} />
     </div>

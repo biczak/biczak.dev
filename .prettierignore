@@ -13,6 +13,9 @@ pnpm-lock.yaml
 # Generated / vendored content
 docs/
 
+# Lighthouse CI artifacts
+.lighthouseci/
+
 # Harness-managed
 .claude/
 .superpowers/

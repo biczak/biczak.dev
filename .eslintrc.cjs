@@ -27,5 +27,6 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['region'] }],
   },
 };
