@@ -15,9 +15,10 @@ export function SpectralBloom() {
   const [startedOnce, setStartedOnce] = useState(false);
 
   // Keep the analyser smoothing in sync with the config slider.
+  const { setSmoothing } = engine;
   useEffect(() => {
-    engine.setSmoothing(config.smoothing);
-  }, [config.smoothing, engine]);
+    setSmoothing(config.smoothing);
+  }, [config.smoothing, setSmoothing]);
 
   useRenderLoop({ canvasRef, analyserRef: engine.analyserRef, config, paused });
 
