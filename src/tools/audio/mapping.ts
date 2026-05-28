@@ -37,10 +37,7 @@ export function bloomGeometry(
     bandAverage(freq, Math.floor(n * 0.1), Math.floor(n * 0.5) - 1),
     config.sensitivity,
   );
-  const high = applySensitivity(
-    bandAverage(freq, Math.floor(n * 0.5), n - 1),
-    config.sensitivity,
-  );
+  const high = applySensitivity(bandAverage(freq, Math.floor(n * 0.5), n - 1), config.sensitivity);
   return {
     pulseRadius: size * (BLOOM_MIN + bass * (BLOOM_MAX - BLOOM_MIN)),
     ringRadius: size * RING_BASE,

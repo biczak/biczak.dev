@@ -75,7 +75,9 @@ export function Controls({
               onClick={() => onConfigChange({ ...config, mode: m })}
               aria-pressed={config.mode === m}
               className={`px-3 py-1.5 rounded-full font-mono text-xs border transition-colors duration-quick ${
-                config.mode === m ? 'border-cyan text-cyan' : 'border-paper/10 hover:border-paper/30'
+                config.mode === m
+                  ? 'border-cyan text-cyan'
+                  : 'border-paper/10 hover:border-paper/30'
               }`}
             >
               {m}
