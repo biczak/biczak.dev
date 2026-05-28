@@ -16,5 +16,5 @@ export const PALETTES: Palette[] = [
 // always return a valid palette. URL-decoding (Task 3) guarantees the name is
 // valid; aurora (PALETTES[0]) is the designated fallback for any unexpected value.
 export function getPalette(name: PaletteName): Palette {
-  return PALETTES.find((p) => p.name === name) ?? PALETTES[0];
+  return PALETTES.find((p) => p.name === name) ?? PALETTES[0]!;
 }

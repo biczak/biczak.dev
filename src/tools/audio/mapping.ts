@@ -10,7 +10,7 @@ export function bandAverage(freq: Uint8Array, loBin: number, hiBin: number): num
   const hi = Math.min(freq.length - 1, hiBin);
   if (hi < lo) return 0;
   let sum = 0;
-  for (let i = lo; i <= hi; i++) sum += freq[i];
+  for (let i = lo; i <= hi; i++) sum += freq[i] ?? 0;
   return sum / (hi - lo + 1) / 255;
 }
 
@@ -71,7 +71,7 @@ export function waveformPoints(
   const out: { x: number; y: number }[] = [];
   for (let i = 0; i < n; i++) {
     // Amplitude is intentionally NOT clamped: at high sensitivity the waveform overdrives past the canvas edges for a clipping effect (unlike barHeights, which clamps via applySensitivity).
-    const amplitude = ((time[i] - 128) / 128) * config.sensitivity;
+    const amplitude = (((time[i] ?? 128) - 128) / 128) * config.sensitivity;
     out.push({ x: (i / Math.max(1, n - 1)) * width, y: mid - amplitude * mid });
   }
   return out;

@@ -81,8 +81,8 @@ describe('waveformPoints', () => {
   it('maps a silent (128) signal to the vertical midline', () => {
     const pts = waveformPoints(freqOf(64, 128), DEFAULT_CONFIG, 320, 200);
     for (const p of pts) expect(p.y).toBeCloseTo(100); // height / 2
-    expect(pts[0].x).toBe(0);
-    expect(pts[pts.length - 1].x).toBeCloseTo(320);
+    expect(pts[0]!.x).toBe(0);
+    expect(pts[pts.length - 1]!.x).toBeCloseTo(320);
   });
 
   it('displaces the waveform above the midline for a high signal', () => {
