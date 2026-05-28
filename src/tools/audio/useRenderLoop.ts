@@ -26,21 +26,10 @@ export function useRenderLoop({ canvasRef, analyserRef, config, paused, source }
 
     let raf = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
-
     const palette = getPalette(config.palette);
 
     // Paint one frame from the current analyser state. With no active source it
-    // clears to a clean canvas. Reused as both the static (paused) frame and the
+    // clears to a clean canvas. Reused as the static (paused) frame and as the
     // body of the animation loop.
     const draw = () => {
       const analyser = analyserRef.current;
@@ -65,16 +54,25 @@ export function useRenderLoop({ canvasRef, analyserRef, config, paused, source }
       }
     };
 
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Reassigning canvas.width clears the canvas. While paused there is no rAF
+      // loop to repaint, so redraw the static frame here — this also covers the
+      // initial async callback ResizeObserver fires right after observe().
+      if (paused) draw();
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+
     const frame = () => {
       draw();
       raf = requestAnimationFrame(frame);
     };
-
-    if (paused) {
-      draw(); // single static frame
-    } else {
-      raf = requestAnimationFrame(frame);
-    }
+    if (!paused) raf = requestAnimationFrame(frame);
 
     const onVisibility = () => {
       if (document.hidden) cancelAnimationFrame(raf);
