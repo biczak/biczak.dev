@@ -8,7 +8,7 @@ export const site = {
   ],
   email: 'alex@biczak.dev',
   socials: [
-    { label: 'GitHub', href: 'https://github.com/alexbiczak' },
+    { label: 'GitHub', href: 'https://github.com/biczak' },
     { label: 'LinkedIn', href: 'https://linkedin.com/in/alexbiczak' },
   ],
   workHistory: [
@@ -35,10 +35,11 @@ export const site = {
     },
     {
       slug: 'audio',
-      name: 'Audio-Reactive Canvas',
-      summary: 'Web Audio FFT into a canvas visualization with real-time controls.',
+      name: 'Spectral Bloom',
+      summary:
+        'Synthesized or live audio rendered as a reactive radial bloom, bars, or waveform — all in-browser.',
       skills: 'WebAudio · Canvas · Perf',
-      available: false,
+      available: true,
     },
     {
       slug: 'palette',
@@ -55,7 +56,7 @@ export const site = {
       available: false,
     },
   ],
-  repo: 'https://github.com/alexbiczak/biczak.dev',
+  repo: 'https://github.com/biczak/biczak.dev',
 } as const;
 
 export type SiteContent = typeof site;
