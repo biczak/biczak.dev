@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import GradientText from '@/components/GradientText.astro';
+import { SpectralBloom } from '@/tools/audio/SpectralBloom';
+---
+
+<BaseLayout
+  title="Spectral Bloom"
+  description="An audio-reactive Canvas visualizer — synthesized demo or live microphone, rendered as a radial bloom, bars, or waveform. All in your browser."
+>
+  <Header />
+  <main class="mx-auto max-w-7xl px-6 pt-32 pb-24">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] opacity-60 mb-6">Tool — 02</p>
+    <h1 class="font-display text-4xl md:text-6xl leading-[1.05] tracking-[-0.03em] max-w-4xl">
+      <GradientText>Spectral</GradientText> Bloom
+    </h1>
+    <p class="mt-6 max-w-2xl opacity-75 text-lg">
+      Web Audio frequency data, painted to canvas in real time. Play the synthesized demo or switch
+      to your microphone — audio is analyzed in your browser and never leaves it. Your mode,
+      sensitivity, smoothing, and palette live in the URL, so any view is shareable.
+    </p>
+    <div class="mt-16 min-h-[600px]">
+      <SpectralBloom client:only="react" />
+    </div>
+  </main>
+  <Footer sourcePath="src/tools/audio" />
+</BaseLayout>
