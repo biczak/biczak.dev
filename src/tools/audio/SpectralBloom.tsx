@@ -20,7 +20,13 @@ export function SpectralBloom() {
     setSmoothing(config.smoothing);
   }, [config.smoothing, setSmoothing]);
 
-  useRenderLoop({ canvasRef, analyserRef: engine.analyserRef, config, paused });
+  useRenderLoop({
+    canvasRef,
+    analyserRef: engine.analyserRef,
+    config,
+    paused,
+    source: engine.source,
+  });
 
   async function handleSource(next: Source) {
     await engine.setSource(next);
