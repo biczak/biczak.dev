@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ToolCard from '@/components/ToolCard.astro';
+import GradientText from '@/components/GradientText.astro';
+import { site } from '@/content/site';
+---
+
+<BaseLayout title="Tools" description="Four interactive tools built as code samples.">
+  <Header />
+  <main class="mx-auto max-w-6xl px-6 pt-32 pb-24">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] opacity-60 mb-6">Tools</p>
+    <h1 class="font-display text-4xl md:text-6xl leading-[1.05] tracking-[-0.03em] max-w-4xl">
+      Four small things. <GradientText>Made carefully.</GradientText>
+    </h1>
+    <p class="mt-6 max-w-2xl opacity-75 text-lg">
+      Each tool is a self-contained code sample, shipping on its own schedule. Source is open —
+      every card links to its directory on GitHub.
+    </p>
+    <div class="mt-16 grid md:grid-cols-2 gap-6">
+      {
+        site.tools.map((tool) => (
+          <ToolCard
+            slug={tool.slug}
+            name={tool.name}
+            summary={tool.summary}
+            skills={tool.skills}
+            available={tool.available}
+          />
+        ))
+      }
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

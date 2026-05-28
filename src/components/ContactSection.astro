@@ -1,0 +1,33 @@
+---
+import { site } from '@/content/site';
+import GradientText from './GradientText.astro';
+---
+
+<section id="contact" class="mx-auto max-w-6xl px-6 py-24 border-t border-paper/5">
+  <p class="font-mono text-xs uppercase tracking-[0.2em] opacity-60 mb-6">Contact</p>
+  <h2 class="font-display text-4xl md:text-6xl leading-[1.05] tracking-[-0.03em] max-w-3xl">
+    Let&apos;s <GradientText>talk</GradientText>.
+  </h2>
+  <p class="mt-6 max-w-2xl opacity-75 text-lg">
+    I&apos;m open to senior frontend / UI engineering roles. Drop me a line.
+  </p>
+  <div class="mt-10 flex flex-wrap gap-3">
+    <a
+      href={`mailto:${site.email}`}
+      class="px-5 py-3 rounded-full bg-paper text-ink hover:bg-cyan transition-colors duration-base font-mono text-sm"
+    >
+      {site.email}
+    </a>
+    {
+      site.socials.map((social) => (
+        <a
+          href={social.href}
+          class="px-5 py-3 rounded-full border border-paper/20 hover:border-cyan hover:text-cyan transition-colors duration-base font-mono text-sm"
+          rel="noopener"
+        >
+          {social.label} ↗
+        </a>
+      ))
+    }
+  </div>
+</section>

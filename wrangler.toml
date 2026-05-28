@@ -1,0 +1,6 @@
+name = "biczak-site"
+compatibility_date = "2026-05-01"
+
+[env.production]
+# Worker for /api/palette comes in v1.2; this file is in place so deploy
+# tooling has a stable target. v1.0 is pure Pages.

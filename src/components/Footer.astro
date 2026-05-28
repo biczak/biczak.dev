@@ -1,0 +1,35 @@
+---
+import { site } from '@/content/site';
+
+interface Props {
+  sourcePath?: string;
+}
+
+const { sourcePath } = Astro.props;
+const sourceUrl = sourcePath ? `${site.repo}/tree/main/${sourcePath}` : null;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-paper/5 mt-32">
+  <div
+    class="mx-auto max-w-6xl px-6 py-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between font-mono text-xs opacity-70"
+  >
+    <p>© {year} {site.name}</p>
+    <div class="flex gap-4">
+      {
+        sourceUrl && (
+          <a
+            href={sourceUrl}
+            class="hover:text-cyan transition-colors duration-quick"
+            rel="noopener"
+          >
+            view source ↗
+          </a>
+        )
+      }
+      <a href={site.repo} class="hover:text-cyan transition-colors duration-quick" rel="noopener"
+        >github ↗</a
+      >
+    </div>
+  </div>
+</footer>

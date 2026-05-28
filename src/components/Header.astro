@@ -1,0 +1,19 @@
+---
+import { site } from '@/content/site';
+---
+
+<header class="sticky top-0 z-40 backdrop-blur-md bg-ink/70 border-b border-paper/5">
+  <nav class="mx-auto max-w-6xl flex items-center justify-between px-6 py-4 font-mono text-xs">
+    <a href="/" class="hover:text-cyan transition-colors duration-quick" aria-label="Home">
+      <span class="opacity-60">~/</span><span>{site.shortName.toLowerCase().replace(' ', '-')}</span
+      >
+    </a>
+    <ul class="flex gap-6">
+      <li><a href="/#about" class="hover:text-cyan transition-colors duration-quick">about</a></li>
+      <li><a href="/tools" class="hover:text-cyan transition-colors duration-quick">tools</a></li>
+      <li>
+        <a href="/#contact" class="hover:text-cyan transition-colors duration-quick">contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>

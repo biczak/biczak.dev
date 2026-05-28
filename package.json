@@ -1,0 +1,62 @@
+{
+  "name": "claude_website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check && tsc --noEmit",
+    "lint": "eslint --ext .ts,.tsx,.astro --no-error-on-unmatched-pattern src tests",
+    "format": "prettier --write \"**/*.{ts,tsx,astro,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\"",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm e2e --project=chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.4.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "@astrojs/react": "^5.0.5",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^18.3.29",
+    "@types/react-dom": "^18.3.7",
+    "astro": "^5.18.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@axe-core/playwright": "^4.11.3",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@vitest/coverage-v8": "^4.1.7",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "happy-dom": "^20.9.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.7"
+  }
+}

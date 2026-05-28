@@ -7,6 +7,12 @@ dist/
 .astro/
 .wrangler/
 
+# Test artifacts
+coverage/
+test-results/
+playwright-report/
+.lighthouseci/
+
 # Environment
 .env
 .env.*
@@ -14,6 +20,9 @@ dist/
 
 # Brainstorming session artifacts (mockups, server state)
 .superpowers/
+
+# Claude Code harness-managed config
+.claude/
 
 # Editor / OS
 .vscode/

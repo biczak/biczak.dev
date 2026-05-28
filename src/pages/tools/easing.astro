@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import GradientText from '@/components/GradientText.astro';
+import { EasingLab } from '@/tools/easing/EasingLab';
+---
+
+<BaseLayout
+  title="Easing Curve Lab"
+  description="Design custom cubic-bezier easings and feel them across five animated targets at once."
+>
+  <Header />
+  <main class="mx-auto max-w-7xl px-6 pt-32 pb-24">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] opacity-60 mb-6">Tool — 01</p>
+    <h1 class="font-display text-4xl md:text-6xl leading-[1.05] tracking-[-0.03em] max-w-4xl">
+      <GradientText>Easing</GradientText> Curve Lab
+    </h1>
+    <p class="mt-6 max-w-2xl opacity-75 text-lg">
+      Design a cubic-bezier curve and feel it apply to five different animated properties at once.
+      Compare against built-in easings. Export to CSS, JS, Motion, or SCSS. Share the URL — your
+      curve is in the hash.
+    </p>
+    <div class="mt-16 min-h-[800px]">
+      <EasingLab client:only="react" />
+    </div>
+    <aside
+      aria-label="Keyboard shortcuts"
+      class="mt-12 rounded-2xl border border-paper/10 bg-graphite p-6"
+    >
+      <p class="font-mono text-[10px] uppercase tracking-[0.2em] opacity-50 mb-3">Keyboard</p>
+      <ul class="grid sm:grid-cols-2 gap-2 font-mono text-xs opacity-75">
+        <li>↑ ↓ ← → — nudge handle 0.01</li>
+        <li>Shift + arrows — nudge 0.10</li>
+        <li>Tab — cycle handle / control focus</li>
+        <li>Space — toggle play/pause (when pause button focused)</li>
+      </ul>
+    </aside>
+  </main>
+  <Footer sourcePath="src/tools/easing" />
+</BaseLayout>
