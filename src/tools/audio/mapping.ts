@@ -25,6 +25,7 @@ export interface BloomGeometry {
   shimmerCount: number; // integer, driven by highs
 }
 
+// `size` is the canvas square render dimension (the caller passes Math.min(width, height)).
 export function bloomGeometry(
   freq: Uint8Array,
   config: VisualizerConfig,
@@ -69,8 +70,9 @@ export function waveformPoints(
   const n = time.length;
   const out: { x: number; y: number }[] = [];
   for (let i = 0; i < n; i++) {
+    // Amplitude is intentionally NOT clamped: at high sensitivity the waveform overdrives past the canvas edges for a clipping effect (unlike barHeights, which clamps via applySensitivity).
     const amplitude = ((time[i] - 128) / 128) * config.sensitivity;
-    out.push({ x: (i / (n - 1)) * width, y: mid - amplitude * mid });
+    out.push({ x: (i / Math.max(1, n - 1)) * width, y: mid - amplitude * mid });
   }
   return out;
 }
