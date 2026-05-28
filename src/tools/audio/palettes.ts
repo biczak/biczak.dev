@@ -12,6 +12,9 @@ export const PALETTES: Palette[] = [
   { name: 'mono', label: 'Mono', stops: ['#e5e7ff', '#9aa0c7', '#4b5572'] },
 ];
 
+// Total function by design: the render loop calls this every frame, so it must
+// always return a valid palette. URL-decoding (Task 3) guarantees the name is
+// valid; aurora (PALETTES[0]) is the designated fallback for any unexpected value.
 export function getPalette(name: PaletteName): Palette {
   return PALETTES.find((p) => p.name === name) ?? PALETTES[0];
 }

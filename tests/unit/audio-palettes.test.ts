@@ -21,4 +21,9 @@ describe('palettes', () => {
     // @ts-expect-error testing runtime fallback
     expect(getPalette('nope').name).toBe('aurora');
   });
+
+  it('has unique palette names', () => {
+    const names = PALETTES.map((p) => p.name);
+    expect(new Set(names).size).toBe(names.length);
+  });
 });
