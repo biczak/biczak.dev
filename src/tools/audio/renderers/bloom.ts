@@ -5,11 +5,12 @@ export function drawBloom(
   ctx: CanvasRenderingContext2D,
   geo: BloomGeometry,
   palette: Palette,
-  size: number,
+  width: number,
+  height: number,
 ): void {
-  const cx = size / 2;
-  const cy = size / 2;
-  ctx.clearRect(0, 0, size, size);
+  const cx = width / 2;
+  const cy = height / 2;
+  ctx.clearRect(0, 0, width, height);
 
   // Deformed mid-band ring.
   ctx.beginPath();

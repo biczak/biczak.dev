@@ -48,7 +48,7 @@ export function useRenderLoop({ canvasRef, analyserRef, config, paused }: Option
           const freq = new Uint8Array(analyser.frequencyBinCount);
           analyser.getByteFrequencyData(freq);
           if (config.mode === 'bloom') {
-            drawBloom(ctx, bloomGeometry(freq, config, Math.min(w, h)), palette, Math.min(w, h));
+            drawBloom(ctx, bloomGeometry(freq, config, Math.min(w, h)), palette, w, h);
           } else {
             drawBars(ctx, barHeights(freq, config, 48), palette, w, h);
           }
