@@ -17,6 +17,7 @@ export function useAudioEngine(): AudioEngine {
   const volumeRef = useRef<GainNode | null>(null);
   const synthRef = useRef<SynthSource | null>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
+  const mountedRef = useRef(true);
   const [source, setSourceState] = useState<Source>(null);
   const [micError, setMicError] = useState<string | null>(null);
 
@@ -59,6 +60,10 @@ export function useAudioEngine(): AudioEngine {
       } else if (next === 'mic') {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          if (!mountedRef.current) {
+            stream.getTracks().forEach((t) => t.stop());
+            return;
+          }
           micStreamRef.current = stream;
           const micNode = ctx.createMediaStreamSource(stream);
           micNode.connect(analyserRef.current!); // analyser only — never destination
@@ -84,6 +89,7 @@ export function useAudioEngine(): AudioEngine {
 
   useEffect(() => {
     return () => {
+      mountedRef.current = false;
       teardownSources();
       ctxRef.current?.close();
     };
