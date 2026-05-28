@@ -9,7 +9,7 @@ export function drawBars(
 ): void {
   ctx.clearRect(0, 0, width, height);
   const gap = 2;
-  const barWidth = (width - gap * (heights.length - 1)) / heights.length;
+  const barWidth = Math.max(1, (width - gap * (heights.length - 1)) / heights.length);
   heights.forEach((h, i) => {
     const barHeight = h * height;
     ctx.fillStyle = palette.stops[Math.min(2, Math.floor(h * 3))] as string;
