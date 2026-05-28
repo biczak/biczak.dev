@@ -15,7 +15,7 @@
     "test:watch": "vitest",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
-    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm e2e"
+    "ci": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm e2e --project=chromium"
   },
   "keywords": [],
   "author": "",

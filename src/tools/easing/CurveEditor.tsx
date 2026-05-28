@@ -195,6 +195,7 @@ export function CurveEditor({
           aria-valuenow={curve[0]}
           aria-valuemin={0}
           aria-valuemax={1}
+          aria-valuetext={`x ${curve[0].toFixed(2)}, y ${curve[1].toFixed(2)}`}
           onKeyDown={onKey(0)}
           style={{ cursor: 'grab' }}
         />
@@ -213,6 +214,7 @@ export function CurveEditor({
           aria-valuenow={curve[2]}
           aria-valuemin={0}
           aria-valuemax={1}
+          aria-valuetext={`x ${curve[2].toFixed(2)}, y ${curve[3].toFixed(2)}`}
           onKeyDown={onKey(1)}
           style={{ cursor: 'grab' }}
         />

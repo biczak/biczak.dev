@@ -4,7 +4,7 @@ Personal site for Alex Biczak. Astro + React islands on Cloudflare Pages.
 
 ## Setup
 
-- Requires Node 22+ and pnpm 9+
+- Requires Node 22+ and pnpm 11+
 - `pnpm install`
 - `pnpm dev` — local dev server at http://localhost:4321
 - `pnpm test` — Vitest unit tests

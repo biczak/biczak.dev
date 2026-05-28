@@ -44,10 +44,12 @@ export function ExportPanel({ curve }: Props) {
                 type="button"
                 onClick={() => handleCopy(format.id, code)}
                 className="font-mono text-xs px-3 py-2 rounded-md border border-paper/10 hover:border-cyan hover:text-cyan transition-colors duration-quick whitespace-nowrap"
-                aria-live="polite"
               >
                 {justCopied ? '✓ copied' : 'copy'}
               </button>
+              <span role="status" aria-live="polite" className="sr-only">
+                {justCopied ? `${format.label} copied` : ''}
+              </span>
             </div>
           );
         })}
