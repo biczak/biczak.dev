@@ -41,9 +41,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.11.3",
-    "@fontsource-variable/bricolage-grotesque": "^5.2.10",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/jetbrains-mono": "^5.2.8",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1",
