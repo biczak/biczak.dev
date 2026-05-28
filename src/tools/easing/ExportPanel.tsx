@@ -29,10 +29,18 @@ export function ExportPanel({ curve }: Props) {
           const justCopied = copied === format.id;
           return (
             <div key={format.id} className="flex items-center gap-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-50 w-12 shrink-0">
+              <span
+                id={`export-label-${format.id}`}
+                className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-50 w-12 shrink-0"
+              >
                 {format.label}
               </span>
-              <div className="flex-1 font-mono text-xs px-3 py-2 rounded-md bg-ink/60 border border-paper/5 overflow-x-auto whitespace-nowrap">
+              <div
+                tabIndex={0}
+                role="region"
+                aria-labelledby={`export-label-${format.id}`}
+                className="flex-1 font-mono text-xs px-3 py-2 rounded-md bg-ink/60 border border-paper/5 overflow-x-auto whitespace-nowrap"
+              >
                 <code>{code}</code>
               </div>
               <button
